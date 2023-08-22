@@ -1,11 +1,15 @@
-module github.com/portapps/ungoogled-chromium-portable
+module github.com/portapps/supermium-portable
 
 go 1.19
 
-require github.com/portapps/portapps/v3 v3.8.0
+require (
+	github.com/kevinburke/go-bindata v3.24.0+incompatible
+	github.com/portapps/portapps/v3 v3.8.0
+)
 
 require (
 	github.com/akavel/rsrc v0.10.2 // indirect
+	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/ilya1st/rotatewriter v0.0.0-20171126183947-3df0c1a3ed6d // indirect
 	github.com/josephspurrier/goversioninfo v1.4.0 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
