@@ -27,3 +27,16 @@ Since Google cut support for Windows versions older than 10, project Supermium i
 
 MIT. See `LICENSE` for more details.<br />
 Rocket icon credit to [Squid Ink](http://thesquid.ink).
+
+## Building
+
+You will need to install Go and Apache Ant and add binaries to system PATH.
+
+mkdir C:\portapps-dev
+cd C:\portapps-dev\
+git clone https://github.com/adeii/supermium-portable
+git clone https://github.com/portapps/portapps
+cd supermium-portable\
+ant release
+
+You will find supermium-portable/bin/release/supermium-portable-win64-117*.7z upon completed building.
