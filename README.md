@@ -1,4 +1,4 @@
-<p align="center"><img width="100" src="https://github.com/adeii/supermium/blob/aloha/res/papp.png"></a></p>
+<p align="center"><img width="100" src="https://github.com/adeii/supermium-portable/blob/aloha/res/papp.png"></a></p>
 
 <p align="center">
   <br /><a href="https://github.com/sponsors/crazy-max"><img src="https://img.shields.io/badge/sponsor-crazy--max-181717.svg?logo=github&style=flat-square" alt="Become a sponsor"></a>
@@ -21,6 +21,7 @@ Documentation of original porting source be found on https://portapps.io/app/ung
 ## Credits
 
 Thanks to [**@macchrome**](https://github.com/macchrome) for providing the [Ungoogled Chromium releases for Windows](https://github.com/macchrome/winchrome/releases).
+
 Thanks to https://alohabrowser.com/pc/ for this browser.
 
 ## License
