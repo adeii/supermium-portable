@@ -29,14 +29,14 @@ func init() {
 	}
 
 	// Init app
-	if app, err = portapps.NewWithCfg("ungoogled-chromium-portable", "Ungoogled Chromium", cfg); err != nil {
+	if app, err = portapps.NewWithCfg("aloha-portable", "Aloha", cfg); err != nil {
 		log.Fatal().Err(err).Msg("Cannot initialize application. See log file for more info.")
 	}
 }
 
 func main() {
 	utl.CreateFolder(app.DataPath)
-	app.Process = utl.PathJoin(app.AppPath, "chrome.exe")
+	app.Process = utl.PathJoin(app.AppPath, "aloha.exe")
 	app.Args = []string{
 		"--user-data-dir=" + app.DataPath,
 		"--no-default-browser-check",
@@ -50,7 +50,7 @@ func main() {
 	if cfg.Cleanup {
 		defer func() {
 			utl.Cleanup([]string{
-				path.Join(os.Getenv("LOCALAPPDATA"), "Chromium"),
+				path.Join(os.Getenv("LOCALAPPDATA"), "Aloha"),
 			})
 		}()
 	}

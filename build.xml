@@ -18,19 +18,18 @@
 
   <target name="prepare">
     <echo message="Preparing release..."/>
-    <if>
-      <equals arg1="${atf.arch}" arg2="win32"/>
-      <then>
-        <move todir="${extract.path}">
-          <fileset dir="${extract.path}\Ungoogled-Chromium-${app.version}-1_Win32" defaultexcludes="no"/>
-        </move>
-      </then>
-      <else>
-        <move todir="${extract.path}">
-          <fileset dir="${extract.path}\ungoogled-chromium-${app.version}-1_Win64" defaultexcludes="no"/>
-        </move>
-      </else>
-    </if>
+   <!-- 
+    <delete dir="${tmp.path}\extract2"/>
+   -->
+    <echo message="Extracting embedded aloha installation"/>
+    <property name="extract.path2" value="${tmp.path}\extract2"/>
+
+    <sevenzip-ax src="${extract.path}\aloha.7z" dest="${extract.path2}"/>
+    <delete dir="${extract.path}"/>
+    <move todir="${extract.path}">
+      <fileset dir="${extract.path2}\Chrome-bin" defaultexcludes="no"/>
+    </move>
+
   </target>
 
 </project>
