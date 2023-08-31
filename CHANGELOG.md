@@ -1,8 +1,6 @@
 # Changelog
 
-## 117.0.5874.0 (2023/06/xx)
+## 6.2.3105.43 (2023/08/31)
 
-* Supermium 117.0.5874
+* Vivaldi 6.2.3105.43
 * Portapps 3.8.0
-
-All credits goes to win32ss for making Supermium browser!

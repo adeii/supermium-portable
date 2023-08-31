@@ -1,5 +1,5 @@
 //go:generate go install -v github.com/kevinburke/go-bindata/go-bindata
-//go:generate go-bindata -prefix res/ -pkg assets -o assets/assets.go res/Supermium.lnk
+//go:generate go-bindata -prefix res/ -pkg assets -o assets/assets.go res/Vivaldi.lnk
 //go:generate go install -v github.com/josephspurrier/goversioninfo/cmd/goversioninfo
 //go:generate goversioninfo -icon=res/papp.ico -manifest=res/papp.manifest
 package main
@@ -8,7 +8,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/portapps/supermium-portable/assets"
+	"github.com/portapps/vivaldi-portable/assets"
 	"github.com/portapps/portapps/v3"
 	"github.com/portapps/portapps/v3/pkg/log"
 	"github.com/portapps/portapps/v3/pkg/registry"
@@ -34,14 +34,14 @@ func init() {
 	}
 
 	// Init app
-	if app, err = portapps.NewWithCfg("supermium-portable", "Supermium", cfg); err != nil {
+	if app, err = portapps.NewWithCfg("vivaldi-portable", "Vivaldi", cfg); err != nil {
 		log.Fatal().Err(err).Msg("Cannot initialize application. See log file for more info.")
 	}
 }
 
 func main() {
 	utl.CreateFolder(app.DataPath)
-	app.Process = utl.PathJoin(app.AppPath, "chrome.exe")
+	app.Process = utl.PathJoin(app.AppPath, "vivaldi.exe")
 	app.Args = []string{
 		"--user-data-dir=" + app.DataPath,
 		"--no-default-browser-check",
@@ -49,23 +49,24 @@ func main() {
 		"--disable-breakpad",
 		"--disable-machine-id",
 		"--disable-encryption-win",
+		"--no-sandbox",
 	}
 
 	// Cleanup on exit
 	if cfg.Cleanup {
 		defer func() {
 			utl.Cleanup([]string{
-				path.Join(os.Getenv("APPDATA"), "Supermium"),
-				path.Join(os.Getenv("LOCALAPPDATA"), "Supermium"),
+				path.Join(os.Getenv("APPDATA"), "Vivaldi"),
+				path.Join(os.Getenv("LOCALAPPDATA"), "Vivaldi"),
 			})
 		}()
 	}
 
 	// Copy default shortcut
-	shortcutPath := path.Join(os.Getenv("APPDATA"), "Microsoft", "Windows", "Start Menu", "Programs", "Supermium Portable.lnk")
-	defaultShortcut, err := assets.Asset("Supermium.lnk")
+	shortcutPath := path.Join(os.Getenv("APPDATA"), "Microsoft", "Windows", "Start Menu", "Programs", "Vivaldi Portable.lnk")
+	defaultShortcut, err := assets.Asset("Vivaldi.lnk")
 	if err != nil {
-		log.Error().Err(err).Msg("Cannot load asset Supermium.lnk")
+		log.Error().Err(err).Msg("Cannot load asset Vivaldi.lnk")
 	}
 	err = os.WriteFile(shortcutPath, defaultShortcut, 0644)
 	if err != nil {
@@ -77,7 +78,7 @@ func main() {
 		ShortcutPath:     shortcutPath,
 		TargetPath:       app.Process,
 		Arguments:        shortcut.Property{Clear: true},
-		Description:      shortcut.Property{Value: "Supermium Portable by Portapps and Adeii"},
+		Description:      shortcut.Property{Value: "Vivaldi Portable by Portapps and Adeii"},
 		IconLocation:     shortcut.Property{Value: app.Process},
 		WorkingDirectory: shortcut.Property{Value: app.AppPath},
 	})
@@ -93,26 +94,26 @@ func main() {
 	// Registry keys
 	regsPath := utl.CreateFolder(app.RootPath, "reg")
 	bsRegKey := registry.Key{
-		Key:  `HKCU\SOFTWARE\Supermium`,
+		Key:  `HKCU\SOFTWARE\Vivaldi`,
 		Arch: "32",
 	}
 	bbdRegKey := registry.Key{
-		Key:  `HKCU\SOFTWARE\Supermium-Browser-Development`,
+		Key:  `HKCU\SOFTWARE\Vivaldi-Browser-Development`,
 		Arch: "32",
 	}
 
-	if err := bsRegKey.Import(utl.PathJoin(regsPath, "Supermium.reg")); err != nil {
+	if err := bsRegKey.Import(utl.PathJoin(regsPath, "Vivaldi.reg")); err != nil {
 		log.Error().Err(err).Msg("Cannot import registry key")
 	}
-	if err := bbdRegKey.Import(utl.PathJoin(regsPath, "Supermium-Browser-Development.reg")); err != nil {
+	if err := bbdRegKey.Import(utl.PathJoin(regsPath, "Vivaldi-Browser-Development.reg")); err != nil {
 		log.Error().Err(err).Msg("Cannot import registry key")
 	}
 
 	defer func() {
-		if err := bsRegKey.Export(utl.PathJoin(regsPath, "Supermium.reg")); err != nil {
+		if err := bsRegKey.Export(utl.PathJoin(regsPath, "Vivaldi.reg")); err != nil {
 			log.Error().Err(err).Msg("Cannot export registry key")
 		}
-		if err := bbdRegKey.Export(utl.PathJoin(regsPath, "Supermium-Browser-Development.reg")); err != nil {
+		if err := bbdRegKey.Export(utl.PathJoin(regsPath, "Vivaldi-Browser-Development.reg")); err != nil {
 			log.Error().Err(err).Msg("Cannot export registry key")
 		}
 		if cfg.Cleanup {

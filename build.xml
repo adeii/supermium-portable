@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="supermium" basedir=".">
+<project name="vivaldi" basedir=".">
 
-  <dirname property="app.basedir" file="${ant.file.supermium}"/>
+  <dirname property="app.basedir" file="${ant.file.vivaldi}"/>
   <property name="build.properties" value="${app.basedir}/build.properties"/>
   <property file="${build.properties}"/>
 
@@ -21,13 +21,13 @@
    <!-- 
     <delete dir="${tmp.path}\extract2"/>
    -->
-    <echo message="Extracting embedded supermium installer"/>
+    <echo message="Extracting embedded vivaldi installer"/>
     <property name="extract.path2" value="${tmp.path}\extract2"/>
 
-    <sevenzip-ax src="${extract.path}\chrome.7z" dest="${extract.path2}"/>
+    <sevenzip-ax src="${extract.path}\vivaldi.7z" dest="${extract.path2}"/>
     <delete dir="${extract.path}"/>
     <move todir="${extract.path}">
-      <fileset dir="${extract.path2}\Chrome-bin" defaultexcludes="no"/>
+      <fileset dir="${extract.path2}\Vivaldi-bin" defaultexcludes="no"/>
     </move>
 
   </target>

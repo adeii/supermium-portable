@@ -1,4 +1,4 @@
-:: cd supermium-portable
+:: cd vivaldi-portable
 "C:\PROJEKTI\ANDROID\apache-ant\bin\ant.bat" release
 
 :: inace,za brave-portable-master github

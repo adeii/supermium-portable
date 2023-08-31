@@ -1,4 +1,4 @@
-module github.com/portapps/supermium-portable
+module github.com/portapps/vivaldi-portable
 
 go 1.19
 
