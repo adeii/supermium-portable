@@ -17,15 +17,15 @@
   {
     "Comments": "",
     "CompanyName": "",
-    "FileDescription": "Supermium portable on Windows by Portapps",
+    "FileDescription": "Firefox portable on Windows by Portapps",
     "FileVersion": "",
     "InternalName": "",
-    "LegalCopyright": "https://github.com/portapps/supermium-portable",
+    "LegalCopyright": "https://github.com/portapps/Firefox-portable",
     "LegalTrademarks": "",
-    "OriginalFilename": "supermium-portable.exe",
+    "OriginalFilename": "Firefox-portable.exe",
     "PrivateBuild": "",
-    "ProductName": "Supermium Portable",
-    "ProductVersion": "119.0.6045.192",
+    "ProductName": "Firefox Portable",
+    "ProductVersion": "123.0b1.66",
     "SpecialBuild": ""
   },
   "VarFileInfo":
