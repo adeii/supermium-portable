@@ -44,6 +44,7 @@ func main() {
 		"--disable-breakpad",
 		"--disable-machine-id",
 		"--disable-encryption-win",
+		"--no-sandbox",
 	}
 
 	// Cleanup on exit

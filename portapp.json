@@ -1,0 +1,11 @@
+{
+  "id": "aloha-portable",
+  "guid": "{D0116FB7-CD20-4BDA-9248-3E6F5FB6B1B7}",
+  "name": "Aloha Portable",
+  "version": "1.4.0.0",
+  "release": "4",
+  "date": "2024/01/25 12:47:07",
+  "publisher": "CrazyMax",
+  "url": "https://github.com/portapps/aloha-portable",
+  "portapps_version": "3.9.0"
+}
