@@ -37,6 +37,8 @@ You will need to install Go and Apache Ant and add binaries to system PATH.
      git clone https://github.com/adeii/supermium-portable
      git clone https://github.com/portapps/portapps
      cd supermium-portable\
+     prepare.bat (or prepare32.bat for x86 build)
      ant release
 
-You will find supermium-portable/bin/release/supermium-portable-win64-117*.7z upon completed building.
+You will find supermium-portable/bin/release/supermium-portable-win*-121.*.7z upon completed building.
+Since v121: Be sure to add progwrp.dll to APP folder. (Rename progwrp32.dll to progwrp.dll before that, for x86 build.)
