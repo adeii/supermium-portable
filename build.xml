@@ -15,12 +15,23 @@
 
   <!-- Targets -->
   <target name="release" depends="release.app" description="Release"/>
-
+  <echo message="Massive extracts..."/>
+  <sevenzip-ax src="${tmp.path}\supermium_64.exe" dest="${tmp.path}\extract3"/>
+  <sevenzip-x src="${tmp.path}\extract3\mini_installer.exe" dest="${tmp.path}\extract2"/>
+  <sevenzip-x src="${tmp.path}\extract2\chrome.7z" dest="${extract.path}"/>
+  <copy file="${tmp.path}\extract2\chrome.7z" tofile="${tmp.path}\supermium_64.7z" overwrite="true"/>
+  
+  <echo message="Preparing release..."/>
   <target name="prepare">
-    <echo message="Preparing release..."/>
+ 
+  <copy file="${tmp.path}\extract3\progwrp.dll" todir="${tmp.path}\extract\Chrome-bin" overwrite="true"/>
+    <delete dir="${tmp.path}\extract\Chrome-bin\mini_installer.exe"/>
+    <delete file="${tmp.path}\extract\Chrome-bin\setup.exe"/>
+	<copy file="${tmp.path}\extract3\progwrp.dll" todir="${tmp.path}\extract\Chrome-bin" overwrite="true"/>
     <move todir="${extract.path}">
           <fileset dir="${extract.path}\Chrome-bin" defaultexcludes="no"/>
-    </move>
+    </move>  
+
   </target>
 
 </project>
