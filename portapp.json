@@ -2,9 +2,9 @@
   "id": "Firefox-portable",
   "guid": "{C7478F88-9391-481E-B99D-86427783B735}",
   "name": "Firefox Portable",
-  "version": "121.0",
-  "release": "65",
-  "date": "2024/01/24 12:29:16",
+  "version": "123.0b9",
+  "release": "88",
+  "date": "2024/02/12 22:54:14",
   "publisher": "CrazyMax",
   "url": "https://github.com/portapps/Firefox-portable",
   "portapps_version": "3.9.0"
