@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="vivaldi" basedir=".">
+<project name="opera" basedir=".">
 
-  <dirname property="app.basedir" file="${ant.file.vivaldi}"/>
+  <dirname property="app.basedir" file="${ant.file.opera}"/>
   <property name="build.properties" value="${app.basedir}/build.properties"/>
   <property file="${build.properties}"/>
 
@@ -18,16 +18,13 @@
 
   <target name="prepare">
     <echo message="Preparing release..."/>
-   <!-- 
-    <delete dir="${tmp.path}\extract2"/>
-   -->
-    <echo message="Extracting embedded vivaldi installer"/>
+    <echo message="Extracting embedded opera installer"/>
     <property name="extract.path2" value="${tmp.path}\extract2"/>
 
-    <sevenzip-ax src="${extract.path}\vivaldi.7z" dest="${extract.path2}"/>
-    <delete dir="${extract.path}"/>
+    <!-- sevenzip-ax src="${extract.path}\opera.7z" dest="${extract.path2}"/ -->
+    <!-- delete dir="${extract.path}"/ -->
     <move todir="${extract.path}">
-      <fileset dir="${extract.path2}\Vivaldi-bin" defaultexcludes="no"/>
+      <fileset dir="${extract.path}" defaultexcludes="no"/>
     </move>
 
   </target>

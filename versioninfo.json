@@ -17,15 +17,15 @@
   {
     "Comments": "",
     "CompanyName": "",
-    "FileDescription": "Vivaldi portable on Windows by Portapps",
+    "FileDescription": "Opera portable on Windows by Portapps",
     "FileVersion": "",
     "InternalName": "",
-    "LegalCopyright": "https://github.com/portapps/vivaldi-portable",
+    "LegalCopyright": "https://github.com/portapps/opera-portable",
     "LegalTrademarks": "",
-    "OriginalFilename": "vivaldi-portable.exe",
+    "OriginalFilename": "opera-portable.exe",
     "PrivateBuild": "",
-    "ProductName": "Vivaldi Portable",
-    "ProductVersion": "6.2.3105.43",
+    "ProductName": "Opera Portable",
+    "ProductVersion": "107.0.5045.36",
     "SpecialBuild": ""
   },
   "VarFileInfo":

@@ -1,5 +1,5 @@
-:: cd vivaldi-portable
-"C:\PROJEKTI\ANDROID\apache-ant\bin\ant.bat" release
+:: cd opera-portable
+"E:\ANDROID\apache-ant\bin\ant.bat" release
 
 :: inace,za brave-portable-master github
 :: go build main.go

@@ -1,4 +1,4 @@
-module github.com/portapps/vivaldi-portable
+module github.com/portapps/opera-portable
 
 go 1.19
 
