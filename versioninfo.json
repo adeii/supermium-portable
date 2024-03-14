@@ -3,7 +3,7 @@
   {
     "FileVersion": {
       "Major": 3,
-      "Minor": 8,
+      "Minor": 9,
       "Patch": 0,
       "Build": 0
     },
@@ -25,7 +25,7 @@
     "OriginalFilename": "vivaldi-portable.exe",
     "PrivateBuild": "",
     "ProductName": "Vivaldi Portable",
-    "ProductVersion": "6.2.3105.43",
+    "ProductVersion": "6.6.3271.50",
     "SpecialBuild": ""
   },
   "VarFileInfo":
