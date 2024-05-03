@@ -1,0 +1,1 @@
+supermium-portable.exe --ungoogled-supermium --classic-omnibox --classic-omnibox-border --compact-ui --disable-features=DownloadBubble,TabHoverCards,PowerBookmarksSidePanel --enable-features=CustomTabShapes
