@@ -29,7 +29,7 @@ func init() {
 	}
 
 	// Init app
-	if app, err = portapps.NewWithCfg("ungoogled-chromium-portable", "Ungoogled Chromium", cfg); err != nil {
+	if app, err = portapps.NewWithCfg("supermium-portable", "Supermium", cfg); err != nil {
 		log.Fatal().Err(err).Msg("Cannot initialize application. See log file for more info.")
 	}
 }
@@ -50,7 +50,8 @@ func main() {
 	if cfg.Cleanup {
 		defer func() {
 			utl.Cleanup([]string{
-				path.Join(os.Getenv("LOCALAPPDATA"), "Chromium"),
+				path.Join(os.Getenv("APPDATA"), "Supermium"),
+				path.Join(os.Getenv("LOCALAPPDATA"), "Supermium"),
 			})
 		}()
 	}
