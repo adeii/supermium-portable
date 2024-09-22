@@ -3,7 +3,7 @@
   {
     "FileVersion": {
       "Major": 3,
-      "Minor": 9,
+      "Minor": 11,
       "Patch": 0,
       "Build": 0
     },
@@ -17,15 +17,15 @@
   {
     "Comments": "",
     "CompanyName": "",
-    "FileDescription": "Supermium portable on Windows by Portapps",
+    "FileDescription": "Thunderbird portable on Windows by Portapps",
     "FileVersion": "",
     "InternalName": "",
-    "LegalCopyright": "https://github.com/portapps/supermium-portable",
+    "LegalCopyright": "https://github.com/portapps/thunderbird-portable",
     "LegalTrademarks": "",
-    "OriginalFilename": "supermium-portable.exe",
+    "OriginalFilename": "thunderbird-portable.exe",
     "PrivateBuild": "",
-    "ProductName": "Supermium Portable",
-    "ProductVersion": "124.0.6367.245",
+    "ProductName": "Thunderbird Portable",
+    "ProductVersion": "130.0.44",
     "SpecialBuild": ""
   },
   "VarFileInfo":

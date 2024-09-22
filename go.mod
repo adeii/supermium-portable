@@ -1,8 +1,13 @@
-module github.com/portapps/supermium-portable
+module github.com/portapps/thunderbird-portable
 
 go 1.21
 
-require github.com/portapps/portapps/v3 v3.9.0
+require (
+	github.com/Jeffail/gabs v1.4.0
+	github.com/pierrec/lz4/v3 v3.3.5
+	github.com/pkg/errors v0.9.1
+	github.com/portapps/portapps/v3 v3.11.0
+)
 
 require (
 	github.com/akavel/rsrc v0.10.2 // indirect
@@ -11,8 +16,7 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
-	github.com/rs/zerolog v1.31.0 // indirect
-	golang.org/x/sys v0.13.0 // indirect
+	github.com/rs/zerolog v1.33.0 // indirect
+	golang.org/x/sys v0.22.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
