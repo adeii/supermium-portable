@@ -1,4 +1,7 @@
 <p align="center"><a href="https://portapps.io/app/firefox-portable/" target="_blank"><img width="100" src="https://github.com/portapps/firefox-portable/blob/master/res/papp.png"></a></p>
+## News
+
+https://www.techspot.com/news/109334-mozilla-extends-firefox-support-windows-7-macos-ventura.html 'Till 2026.
 
 <p align="center">
   <a href="https://portapps.io/app/firefox-portable/#download"><img src="https://img.shields.io/github/release/portapps/firefox-portable.svg?style=flat-square" alt="GitHub release"></a>
