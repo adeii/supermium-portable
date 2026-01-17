@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="firefox" basedir=".">
+
+  <dirname property="app.basedir" file="${ant.file.firefox}"/>
+  <property name="build.properties" value="${app.basedir}/build.properties"/>
+  <property file="${build.properties}"/>
+
+  <!-- Load Portapps core build -->
+  <property name="core.basedir" location="${app.basedir}\${core.dir}"/>
+  <fail unless="core.basedir" message="Core directory '${core.basedir}' not found in ${core.basedir}"/>
+  <echo message="Core found in ${core.basedir}" level="debug"/>
+
+  <!-- Import build-app.xml  -->
+  <import file="${core.basedir}\.build\build-app.xml"/>
+
+  <!-- Targets -->
+  <target name="release" depends="release.app" description="Release"/>
+
+  <target name="prepare">
+    <echo message="Preparing release..."/>
+    <delete dir="${tmp.path}\extract2"/>
+
+    <move todir="${tmp.path}\extract2">
+      <fileset dir="${extract.path}\core" defaultexcludes="no">
+        <exclude name="crashreporter*"/>
+        <exclude name="maintenanceservice*"/>
+        <exclude name="updater*"/>
+        <exclude name="uninstall\**"/>
+      </fileset>
+    </move>
+    <delete dir="${extract.path}"/>
+    <move todir="${extract.path}">
+      <fileset dir="${tmp.path}\extract2" defaultexcludes="no"/>
+    </move>
+
+  </target>
+
+</project>

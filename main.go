@@ -6,36 +6,32 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"os"
 	"path"
 	"strings"
-	"text/template"
 
 	"github.com/Jeffail/gabs"
 	"github.com/pkg/errors"
-	"github.com/portapps/firefox-portable/assets"
 	"github.com/portapps/portapps/v3"
 	"github.com/portapps/portapps/v3/pkg/log"
 	"github.com/portapps/portapps/v3/pkg/mutex"
+	"github.com/portapps/portapps/v3/pkg/registry"
 	"github.com/portapps/portapps/v3/pkg/shortcut"
 	"github.com/portapps/portapps/v3/pkg/utl"
 	"github.com/portapps/portapps/v3/pkg/win"
+	"github.com/portapps/firefox-portable/assets"
 )
 
 type config struct {
 	Profile           string `yaml:"profile" mapstructure:"profile"`
 	MultipleInstances bool   `yaml:"multiple_instances" mapstructure:"multiple_instances"`
-	Locale            string `yaml:"locale" mapstructure:"locale"`
 	Cleanup           bool   `yaml:"cleanup" mapstructure:"cleanup"`
 }
 
 var (
 	app *portapps.App
 	cfg *config
-)
-
-const (
-	defaultLocale = "en-US"
 )
 
 func init() {
@@ -45,7 +41,6 @@ func init() {
 	cfg = &config{
 		Profile:           "default",
 		MultipleInstances: false,
-		Locale:            defaultLocale,
 		Cleanup:           false,
 	}
 
@@ -98,18 +93,20 @@ func main() {
 	// Cleanup on exit
 	if cfg.Cleanup {
 		defer func() {
+			regKey := registry.Key{
+				Key:  `HKCU\SOFTWARE\Firefox`,
+				Arch: "32",
+			}
+			if regKey.Exists() {
+				if err := regKey.Delete(true); err != nil {
+					log.Error().Err(err).Msg("Cannot remove registry key")
+				}
+			}
 			utl.Cleanup([]string{
-				path.Join(os.Getenv("APPDATA"), "Mozilla", "Firefox"),
-				path.Join(os.Getenv("LOCALAPPDATA"), "Mozilla", "Firefox"),
-				path.Join(os.Getenv("USERPROFILE"), "AppData", "LocalLow", "Mozilla"),
+				path.Join(os.Getenv("APPDATA"), "Firefox"),
+				path.Join(os.Getenv("LOCALAPPDATA"), "Firefox"),
 			})
 		}()
-	}
-
-	// Locale
-	locale, err := checkLocale()
-	if err != nil {
-		log.Error().Err(err).Msg("Cannot set locale")
 	}
 
 	// Multiple instances
@@ -138,15 +135,7 @@ pref("general.config.obscure_value", 0);`); err != nil {
 	if err != nil {
 		log.Fatal().Err(err).Msg("Cannot create portapps.cfg")
 	}
-	mozillaCfgData := struct {
-		Locale string
-	}{
-		locale,
-	}
-	mozillaCfgTpl := template.Must(template.New("mozillaCfg").Parse(`// Set locale
-pref("intl.locale.requested", "{{ .Locale }}");
-
-// Extensions scopes
+	mozillaCfgTpl := template.Must(template.New("mozillaCfg").Parse(`// Extensions scopes
 lockPref("extensions.enabledScopes", 4);
 lockPref("extensions.autoDisableScopes", 3);
 
@@ -156,7 +145,7 @@ pref("browser.rights.3.shown", true);
 // Don't show WhatsNew on first run after every update
 pref("browser.startup.homepage_override.mstone", "ignore");
 `))
-	if err := mozillaCfgTpl.Execute(mozillaCfgFile, mozillaCfgData); err != nil {
+	if err := mozillaCfgTpl.Execute(mozillaCfgFile, ""); err != nil {
 		log.Fatal().Err(err).Msg("Cannot write portapps.cfg")
 	}
 
@@ -181,7 +170,7 @@ pref("browser.startup.homepage_override.mstone", "ignore");
 		ShortcutPath:     shortcutPath,
 		TargetPath:       app.Process,
 		Arguments:        shortcut.Property{Clear: true},
-		Description:      shortcut.Property{Value: "Firefox Portable by Portapps and Adeii"},
+		Description:      shortcut.Property{Value: "Firefox Portable by Portapps"},
 		IconLocation:     shortcut.Property{Value: app.Process},
 		WorkingDirectory: shortcut.Property{Value: app.AppPath},
 	})
@@ -239,30 +228,6 @@ func createPolicies() error {
 	}
 
 	return nil
-}
-
-func checkLocale() (string, error) {
-	extSourceFile := fmt.Sprintf("%s.xpi", cfg.Locale)
-	extDestFile := fmt.Sprintf("langpack-%s@firefox.mozilla.org.xpi", cfg.Locale)
-	extsFolder := utl.CreateFolder(app.AppPath, "distribution", "extensions")
-	localeXpi := utl.PathJoin(app.AppPath, "langs", extSourceFile)
-
-	// If default locale skip (already embedded)
-	if cfg.Locale == defaultLocale {
-		return cfg.Locale, nil
-	}
-
-	// Check .xpi file exists
-	if !utl.Exists(localeXpi) {
-		return defaultLocale, fmt.Errorf("XPI file does not exist in %s", localeXpi)
-	}
-
-	// Copy .xpi
-	if err := utl.CopyFile(localeXpi, utl.PathJoin(extsFolder, extDestFile)); err != nil {
-		return defaultLocale, err
-	}
-
-	return cfg.Locale, nil
 }
 
 func updateAddonStartup(profileFolder string) error {

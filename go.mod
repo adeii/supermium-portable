@@ -1,6 +1,6 @@
 module github.com/portapps/firefox-portable
 
-go 1.21
+go 1.24.0
 
 require (
 	github.com/Jeffail/gabs v1.4.0
@@ -19,6 +19,7 @@ require (
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/rs/zerolog v1.31.0 // indirect
-	golang.org/x/sys v0.13.0 // indirect
+	golang.org/x/net v0.49.0 // indirect
+	golang.org/x/sys v0.40.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
