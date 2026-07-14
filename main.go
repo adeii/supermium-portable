@@ -50,6 +50,7 @@ func main() {
 		"--disable-machine-id",
 		"--disable-encryption-win",
 		"--no-sandbox",
+		"--test-type",
 	}
 
 	// Cleanup on exit
